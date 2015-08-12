@@ -14,6 +14,13 @@ setup(
     name='flocker-tools',
     version='0.0.1',
     description="Tools to help administer flocker clusters",
+
+    entry_points={
+        'console_scripts': [
+            'repair-json = flocker_tools._json:main',
+        ],
+    },
+
     install_requires=[
     ],
     extras_require={
