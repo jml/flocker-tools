@@ -28,4 +28,20 @@ class TestRepairJSON(TestCase):
         ]
         self.assertEqual([{'foo': 'bar'}], list(repair_json(lines)))
 
+    def test_trailing_json(self):
+        # We might have JSON at the very end that's never closed.
+        lines = [
+            '{"foo":\n',
+            ' "bar"}\n',
+            '{"qu\n',
+        ]
+        self.assertEqual([{'foo': 'bar'}], list(repair_json(lines)))
 
+    def test_interrupted_json(self):
+        # We might have a JSON object that's interrupted and never finished.
+        lines = [
+            '{"qu\n',
+            '{"foo":\n',
+            ' "bar"}\n',
+        ]
+        self.assertEqual([{'foo': 'bar'}], list(repair_json(lines)))
