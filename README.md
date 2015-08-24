@@ -28,3 +28,5 @@ If you are using earlier versions of flocker, try
 $ sudo ./flocker-log-export.sh
 $ aws s3 cp clusterhq_flocker_logs* s3://some-bucket/some-folder/
 ```
+
+Where `aws` is the [AWS command-line interface](https://aws.amazon.com/cli/).
